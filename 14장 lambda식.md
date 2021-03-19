@@ -1,0 +1,101 @@
+# lambda식
+
+* 제네릭 / 람다 / 익명 클래스
+
+
+
+* 변수나 메소드를 정의하려면 클래스가 필요
+  * 클래스를 없앨 수 있다?
+* 람다
+  * 매개변수를 선언하는 실행문장 블록 정의
+  * 무명의 메소드
+
+```java
+class A{
+    int add(int x, int y){
+        return x+y;
+    }
+}
+// 이와 동일한 문장
+
+(x,y)->{return x+y}; // 람다 라고 부른다.
+```
+
+* (타입 변수명 , , , ,)->{ 실행 문장 블록 }
+
+* (매개변수) -> { 실행 문장 블록 }
+* ( ) ->{ 실행 문장 블록 }
+* 변수명 -> { 실행 문장 블록 } //하나의 변수일 때만 생략가능
+  * (변수명 , , , )->{return x+y;}
+  * (변수명 , , , )->return x+y;
+  * (변수명 , , , )->x+y;
+* 정의한 것을 호출하는 방법을 
+
+</br>
+
+### 타겟 타입과 함수적 인터페이스
+
+```java
+class A {void ma() { }}
+abstract class B {void ma(); abstract void mb();}
+interface C {void ma(); abstract void mb();}
+
+new C(){
+    public void ma() {......}
+    public void mb(){}
+}.ma();
+
+@ FunctionalInterface // -컴파일러에게 메소드가 하나만 있는지 검사시킨다.
+interface I {
+    void m1(); // 1개만 정의하기로 약속 > FunctionalInterface
+}
+
+new I(){
+    void m1(){}
+}.m1();
+
+interface I {
+    void m1(int x);
+}
+I it = (x)->{....}; //I 타겟 타입 람다식
+// I 상속 하위클래스(무명, 유명..) 정의, 객체 생성
+i1.m1(10);
+```
+
+1. 인터페이스 내부에 하나만 정의할 것으로 약속한다.
+
+
+
+### 클래스 멤버와 로컬 변수 사용
+
+
+
+### 표준 API의 함수적 인터페이스
+
+> p. 688 - p.711
+
+```java
+@FunctionalInterface
+interface I1{
+    void m1();  // 매개변수 갯수와 타입, 리턴값의 타입 파악
+}
+
+interface I2{
+    int m2(int i);  // 매개변수 int 1개와 리턴값 int
+}
+
+interface Consumer{
+    void appect(object); >>모든 타입의 매개변수 1개, 리턴값은 없다.
+}
+
+interface Supplier{
+    Object get(); >> 매개변수는 없고, 리턴값이 있다.
+}
+
+Consumer c = o -> {o.toString()....};
+Supplier s = o -> {o.toString()...return o;};
+c.accept(new Employee());
+I1 i = ()->{....};
+i.m1();
+```
+
