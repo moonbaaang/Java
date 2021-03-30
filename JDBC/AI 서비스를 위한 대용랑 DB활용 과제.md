@@ -27,7 +27,11 @@ insert into Student values(2, '고길동', '수학과', '인천', '010-2222-2222
 
 ##### 2. 실습 1에 기반하여 다음과 같은 요구사항을 만족하도록 클래스를 작성하세요
 
-* StudentDAO
+* 실습 1번 테이블에 레코드가 insert 되도록 적당한 jdbc 코드로 채우세요.
+* 실습 1번 테이블의 모든 레코드가 조회되고 출력되도록 적당한 jdbc코드로 채우세요
+* StudentDTO는 실습 1번 테이블 구조와 매핑되는 필드와 메소드를 가집니다
+
+* StudentDAO.java
 
 ```java
 import java.sql.Connection;
@@ -125,7 +129,7 @@ public class StudentDAO {
 }
 ```
 
-* StudentDTO
+* StudentDTO.java
 
 ```sql
 public class StudentDTO {
@@ -165,7 +169,7 @@ public class StudentDTO {
 }
 ```
 
-* StudentTest
+* StudentTest.java
 
 ```sql
 import java.sql.Connection;
@@ -191,9 +195,7 @@ public class StudentTest {
 			(String.format("%-3d %-10s %10s %-10s %-20s", 
 				one.getNo(),one.getName(),one.getDet(),one.getAddr(),one.getTel()));
 		}
-		
 	}
-
 }
 ```
 
