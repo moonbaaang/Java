@@ -1,0 +1,33 @@
+1:import java.io.FileInputStream;
+2:import java.io.FileOutputStream;
+3:import java.io.FileReader;
+4:import java.io.FileWriter;
+5:import java.io.IOException;
+6:import java.util.Scanner;
+7:
+8:public class FileCopyTest3 {
+9:
+10:	public static void main(String[] args) {
+11:		FileReader fi = null;
+12:		FileWriter fo = null;
+13:		try {
+14:			// 라인번호 정수 : 왼쪽 라인 추가
+15:		fi = new FileReader("src/FileCopyTest3.java");
+16:		Scanner sc = new Scanner(fi);
+17:		int linenum = 1;
+18:		fo = new FileWriter("linecopy.txt");
+19:		while(sc.hasNextLine()) {
+20:			String line = sc.nextLine(); // 한 라인을 읽어올 수 있다. \n를 만나면 라인 끝, \n은 사라짐
+21:			//System.out.print(linenum++ +":" + line+"\n");
+22:			fo.write(linenum++ +":" + line+"\n");
+23:		}		
+24:		} catch(IOException e) {
+25:			e.printStackTrace(); // 오류정보 추적 후 메시지 전달
+26:		} finally { //close()는 반드시 진행되어야 하고 예외처리를 반드시 해준다.
+27:			try {
+28:			fi.close();
+29:			fo.close();
+30:			} catch(IOException e) {}
+31:		}
+32:	}
+33:}
